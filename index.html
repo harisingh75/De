@@ -1,0 +1,1592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>De Lounge Cafe | Janakpur Dham</title>
+<meta name="description" content="De Lounge Cafe - A cosy, trendy cafe & lounge in Janakpur Dham serving great coffee, desserts, snacks, rice, curries and noodles. Perfect for solo dining, groups, and tourists.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+:root{--crimson:#8B0000;--crimson-l:#C41230;--gold:#D4AF37;--gold-l:#F2D060;--ivory:#FFF8E7;--ivory-d:#F5E6C8;--dark:#120500;--dark-2:#1a0800;--text:#2C1810;--muted:#7a5c4a}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Lato',sans-serif;background:var(--ivory);color:var(--text);overflow-x:hidden}
+.page{display:none;min-height:100vh}
+.page.active{display:block}
+
+/* NAV */
+#nav{position:fixed;top:0;width:100%;z-index:1000;background:rgba(18,5,0,.97);border-bottom:2px solid var(--gold);transition:all .3s}
+#nav.scrolled{box-shadow:0 4px 30px rgba(0,0,0,.6)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:68px;padding:0 5%}
+.nav-logo{display:flex;align-items:center;gap:12px;cursor:pointer;text-decoration:none}
+.nav-logo img{width:46px;height:46px;border-radius:50%;border:2px solid var(--gold);object-fit:cover}
+.nav-logo-text{font-family:'Playfair Display',serif;color:var(--gold);font-size:1rem;font-weight:700;line-height:1.2}
+.nav-logo-text small{display:block;font-size:.58rem;color:rgba(255,255,255,.6);font-family:'Lato',sans-serif;letter-spacing:2.5px;font-weight:300;text-transform:uppercase}
+.nav-links{display:flex;gap:4px;list-style:none}
+.nav-links li a{color:rgba(255,255,255,.8);text-decoration:none;font-size:.78rem;letter-spacing:1.5px;padding:7px 13px;transition:all .3s;text-transform:uppercase;position:relative;cursor:pointer}
+.nav-links li a::after{content:'';position:absolute;bottom:2px;left:50%;transform:translateX(-50%);width:0;height:1.5px;background:var(--gold);transition:width .3s}
+.nav-links li a:hover::after,.nav-links li a.active::after{width:70%}
+.nav-links li a:hover,.nav-links li a.active{color:var(--gold)}
+.hamburger{display:none;flex-direction:column;cursor:pointer;gap:5px}
+.hamburger span{width:24px;height:2px;background:var(--gold);transition:.3s;display:block}
+.mobile-nav{display:none;flex-direction:column;background:var(--dark-2);padding:15px 5%;border-top:1px solid rgba(212,175,55,.2)}
+.mobile-nav a{color:rgba(255,255,255,.8);text-decoration:none;padding:12px 0;border-bottom:1px solid rgba(212,175,55,.1);font-size:.85rem;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer}
+.mobile-nav a:hover{color:var(--gold)}
+.mobile-nav.open{display:flex}
+
+/* BUTTONS */
+.btn-royal{display:inline-flex;align-items:center;gap:8px;padding:13px 34px;background:var(--gold);color:var(--dark);font-family:'Playfair Display',serif;font-weight:700;font-size:.95rem;text-decoration:none;border:2px solid var(--gold);cursor:pointer;transition:all .3s;letter-spacing:1px;position:relative;overflow:hidden}
+.btn-royal::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:var(--crimson);transition:left .3s;z-index:0}
+.btn-royal:hover::before{left:0}
+.btn-royal:hover{color:var(--gold);border-color:var(--gold)}
+.btn-royal *{position:relative;z-index:1}
+.btn-outline{display:inline-flex;align-items:center;gap:8px;padding:11px 28px;background:transparent;color:var(--gold);font-family:'Playfair Display',serif;font-weight:600;font-size:.9rem;text-decoration:none;border:2px solid var(--gold);cursor:pointer;transition:all .3s;letter-spacing:1px}
+.btn-outline:hover{background:var(--gold);color:var(--dark)}
+.btn-whatsapp-g{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;background:#25D366;color:#fff;font-family:'Playfair Display',serif;font-weight:700;font-size:.9rem;border:none;cursor:pointer;transition:all .3s;letter-spacing:1px;text-decoration:none}
+.btn-whatsapp-g:hover{background:#1da851}
+
+/* SECTION HEADERS */
+.sh{text-align:center;margin-bottom:55px}
+.sh .orn{color:var(--gold);font-size:1rem;letter-spacing:8px;margin-bottom:8px;display:block}
+.sh h2{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);color:var(--crimson);font-weight:700;margin-bottom:12px}
+.sh p{color:var(--muted);max-width:580px;margin:0 auto;font-family:'Cormorant Garamond',serif;font-size:1.05rem;line-height:1.7}
+.gd{display:flex;align-items:center;justify-content:center;gap:12px;margin:12px auto 0}
+.gd::before,.gd::after{content:'';width:55px;height:1px;background:var(--gold)}
+.gd .dm{width:7px;height:7px;background:var(--gold);transform:rotate(45deg)}
+
+/* SECTIONS */
+.sec{padding:75px 5%}
+.sec-lt{background:var(--ivory)}
+.sec-dk{background:var(--dark);color:#fff}
+.sec-cr{background:var(--ivory-d)}
+
+/* STRIP */
+.mstrip{height:10px;background:repeating-linear-gradient(90deg,var(--crimson) 0,var(--crimson) 15px,var(--gold) 15px,var(--gold) 30px,var(--dark) 30px,var(--dark) 45px,var(--gold) 45px,var(--gold) 60px)}
+
+/* ========== HOME PAGE ========== */
+.hero{min-height:100vh;background:radial-gradient(ellipse at 20% 60%,rgba(139,0,0,.4) 0%,transparent 60%),radial-gradient(ellipse at 80% 40%,rgba(212,175,55,.1) 0%,transparent 55%),linear-gradient(160deg,#0d0000 0%,#1a0505 50%,#0d0000 100%);display:flex;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden;padding:90px 20px 60px}
+.hero-svg-bg{position:absolute;inset:0;opacity:.07;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cpath d='M40 5 C50 15 70 15 75 30 C80 45 65 55 60 40 C55 25 45 30 40 40 C35 30 25 25 20 40 C15 55 0 45 5 30 C10 15 30 15 40 5Z' fill='%23D4AF37' opacity='.3'/%3E%3Ccircle cx='40' cy='40' r='8' fill='none' stroke='%23D4AF37' stroke-width='1'/%3E%3Cpath d='M10 60 Q20 50 30 60 Q40 70 50 60 Q60 50 70 60' fill='none' stroke='%23D4AF37' stroke-width='1'/%3E%3C/svg%3E");background-size:80px 80px}
+.hero-corner{position:absolute;width:120px;height:120px;opacity:.25}
+.hero-corner.tl{top:80px;left:20px}
+.hero-corner.tr{top:80px;right:20px;transform:scaleX(-1)}
+.hero-corner.bl{bottom:20px;left:20px;transform:scaleY(-1)}
+.hero-corner.br{bottom:20px;right:20px;transform:scale(-1)}
+.hero-content{position:relative;z-index:2}
+.hero-badge{display:inline-block;background:rgba(212,175,55,.12);border:1px solid rgba(212,175,55,.5);color:var(--gold);padding:6px 22px;font-size:.7rem;letter-spacing:5px;text-transform:uppercase;margin-bottom:22px;font-family:'Lato',sans-serif}
+.hero-logo{width:115px;height:115px;border-radius:50%;border:4px solid var(--gold);object-fit:cover;margin-bottom:22px;animation:glow 3s ease-in-out infinite alternate}
+@keyframes glow{from{box-shadow:0 0 20px rgba(212,175,55,.3),0 0 40px rgba(139,0,0,.2)}to{box-shadow:0 0 50px rgba(212,175,55,.6),0 0 80px rgba(139,0,0,.3)}}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.4rem,6vw,5rem);color:#fff;font-weight:900;line-height:1.1;margin-bottom:10px}
+.hero h1 .gold{color:var(--gold)}
+.hero-tag{font-family:'Cormorant Garamond',serif;font-size:clamp(1.1rem,2.5vw,1.5rem);color:rgba(255,255,255,.8);margin-bottom:8px;font-style:italic}
+.hero-sub{color:rgba(212,175,55,.75);font-size:.75rem;letter-spacing:4px;text-transform:uppercase;margin-bottom:38px;font-family:'Lato',sans-serif}
+.hero-btns{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin-bottom:55px}
+.hero-stats{display:flex;gap:50px;justify-content:center;flex-wrap:wrap;position:relative;z-index:2}
+.hero-stat{text-align:center;color:#fff}
+.hero-stat .num{font-family:'Playfair Display',serif;font-size:2.2rem;color:var(--gold);font-weight:700;line-height:1}
+.hero-stat .lbl{font-size:.65rem;letter-spacing:2.5px;color:rgba(255,255,255,.55);text-transform:uppercase;margin-top:4px}
+.hero-scroll{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);color:rgba(212,175,55,.6);font-size:.7rem;letter-spacing:3px;text-transform:uppercase;z-index:2;animation:bounce 2s infinite}
+@keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
+
+/* Cuisine cards */
+.cuisine-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:18px}
+.cuisine-card{background:#fff;padding:28px 18px;text-align:center;border:1px solid rgba(212,175,55,.25);transition:all .35s;cursor:pointer;border-radius:2px}
+.cuisine-card:hover{border-color:var(--gold);box-shadow:0 12px 35px rgba(139,0,0,.1);transform:translateY(-6px)}
+.cuisine-card .emo{font-size:2.5rem;margin-bottom:12px;display:block}
+.cuisine-card h3{font-family:'Playfair Display',serif;color:var(--crimson);font-size:.95rem;margin-bottom:4px}
+.cuisine-card p{font-size:.72rem;color:var(--muted)}
+
+/* Features */
+.feat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.feat-card{text-align:center;padding:30px 20px;background:rgba(255,255,255,.04);border:1px solid rgba(212,175,55,.15);transition:all .3s}
+.feat-card:hover{border-color:var(--gold);background:rgba(212,175,55,.06)}
+.feat-card .icon{width:62px;height:62px;background:rgba(212,175,55,.1);border:2px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 15px;font-size:1.5rem;color:var(--gold);transition:all .3s}
+.feat-card:hover .icon{background:var(--gold);color:var(--dark)}
+.feat-card h3{font-family:'Playfair Display',serif;color:#fff;margin-bottom:8px;font-size:1rem}
+.feat-card p{color:rgba(255,255,255,.55);font-size:.8rem;line-height:1.6}
+
+/* Showcase */
+.showcase{display:grid;grid-template-columns:1fr 1fr;gap:55px;align-items:center}
+.showcase-img-wrap{position:relative}
+.showcase-img-wrap::before{content:'';position:absolute;top:-12px;left:-12px;right:12px;bottom:12px;border:2px solid var(--gold);border-radius:2px;z-index:0}
+.showcase-img-wrap img{width:100%;border-radius:2px;position:relative;z-index:1;box-shadow:20px 20px 0 var(--gold-l)}
+.showcase-txt h2{font-family:'Playfair Display',serif;font-size:clamp(1.7rem,3vw,2.4rem);color:var(--crimson);margin-bottom:18px;line-height:1.3}
+.showcase-txt p{color:var(--muted);line-height:1.9;margin-bottom:18px;font-family:'Cormorant Garamond',serif;font-size:1.05rem}
+
+/* Amenities */
+.amen-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px;margin-top:28px}
+.amen-item{display:flex;align-items:center;gap:10px;background:#fff;padding:11px 14px;border-left:3px solid var(--gold);border-radius:1px}
+.amen-item i{color:var(--gold);width:18px;font-size:.9rem}
+.amen-item span{font-size:.78rem;color:var(--text);font-weight:500}
+
+/* Page links grid */
+.plink-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:22px}
+.plink-card{background:var(--dark);color:#fff;padding:35px 22px;text-align:center;cursor:pointer;transition:all .35s;border:1px solid rgba(212,175,55,.15);position:relative;overflow:hidden}
+.plink-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--crimson),var(--gold));transform:scaleX(0);transform-origin:left;transition:transform .35s}
+.plink-card:hover::after{transform:scaleX(1)}
+.plink-card:hover{border-color:var(--gold);transform:translateY(-6px);box-shadow:0 20px 40px rgba(0,0,0,.2)}
+.plink-card i{font-size:2rem;color:var(--gold);margin-bottom:14px;display:block}
+.plink-card h3{font-family:'Playfair Display',serif;font-size:1rem;margin-bottom:7px}
+.plink-card p{font-size:.72rem;color:rgba(255,255,255,.45)}
+
+/* ========== ABOUT PAGE ========== */
+.page-hero{padding:120px 5% 70px;background:linear-gradient(150deg,var(--dark) 0%,#200505 100%);text-align:center;position:relative;overflow:hidden}
+.page-hero::before{content:'';position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Ccircle cx='30' cy='30' r='12' fill='none' stroke='%23D4AF37' stroke-width='.5' opacity='.3'/%3E%3Ccircle cx='30' cy='30' r='4' fill='%23D4AF37' opacity='.15'/%3E%3C/svg%3E");background-size:60px 60px}
+.page-hero-inner{position:relative;z-index:1}
+.page-hero h1{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.5rem);color:#fff;margin-bottom:12px}
+.page-hero .sub{color:var(--gold);font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-style:italic}
+.about-main{display:grid;grid-template-columns:320px 1fr;gap:60px;align-items:start}
+.about-logo-box{text-align:center;position:sticky;top:90px}
+.about-logo-box img.main-logo{width:180px;height:180px;border-radius:50%;border:5px solid var(--gold);object-fit:cover;box-shadow:0 20px 50px rgba(0,0,0,.15)}
+.about-img-gallery{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px}
+.about-img-gallery img{width:100%;height:100px;object-fit:cover;border:2px solid rgba(212,175,55,.3);transition:all .3s}
+.about-img-gallery img:hover{border-color:var(--gold);transform:scale(1.02)}
+.about-logo-box .aname{font-family:'Playfair Display',serif;color:var(--crimson);font-size:1.1rem;margin-top:15px;font-weight:700}
+.about-logo-box .aloc{font-size:.78rem;color:var(--muted);margin-top:5px}
+.about-content h2{font-family:'Playfair Display',serif;font-size:1.9rem;color:var(--crimson);margin-bottom:18px;line-height:1.3}
+.about-content p{color:var(--muted);line-height:1.9;margin-bottom:16px;font-family:'Cormorant Garamond',serif;font-size:1.05rem}
+.svc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:20px}
+.svc-block{background:#fff;padding:24px;border-top:3px solid var(--gold)}
+.svc-block h3{font-family:'Playfair Display',serif;color:var(--crimson);margin-bottom:12px;font-size:.95rem;display:flex;align-items:center;gap:8px}
+.svc-block h3 i{color:var(--gold)}
+.tags{display:flex;flex-wrap:wrap;gap:7px}
+.tag{background:var(--ivory-d);color:var(--text);padding:4px 10px;font-size:.72rem;border:1px solid rgba(212,175,55,.3)}
+
+/* ========== MENU PAGE ========== */
+.menu-tabs-bar{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;padding:18px 5%;position:sticky;top:68px;background:var(--ivory);z-index:100;border-bottom:2px solid rgba(212,175,55,.25)}
+.mtab{padding:9px 20px;background:#fff;border:2px solid rgba(212,175,55,.3);color:var(--text);cursor:pointer;font-size:.78rem;letter-spacing:1.5px;text-transform:uppercase;transition:all .3s;font-weight:700}
+.mtab:hover,.mtab.active{background:var(--crimson);border-color:var(--crimson);color:#fff}
+.menu-sec{display:none;padding:35px 5%}
+.menu-sec.active{display:block}
+.menu-sec-h{display:flex;align-items:center;gap:15px;margin-bottom:8px}
+.menu-sec-h h2{font-family:'Playfair Display',serif;font-size:1.7rem;color:var(--crimson)}
+.menu-sec-h .msline{flex:1;height:1px;background:linear-gradient(90deg,var(--gold),transparent)}
+.menu-sec-desc{color:var(--muted);font-style:italic;margin-bottom:25px;font-family:'Cormorant Garamond',serif;font-size:1rem}
+.mitems-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px;margin-bottom:45px}
+.mitem{background:#fff;border:1px solid rgba(212,175,55,.2);transition:all .3s;position:relative}
+.mitem:hover{border-color:var(--gold);box-shadow:0 8px 28px rgba(139,0,0,.1);transform:translateY(-3px)}
+.mitem-img{height:165px;display:flex;align-items:center;justify-content:center;font-size:3.5rem;background:linear-gradient(135deg,#f9f1e0,#ffe4b5);position:relative;overflow:hidden}
+.mitem-badge{position:absolute;top:10px;right:10px;padding:3px 9px;font-size:.65rem;font-weight:700;letter-spacing:1px;color:#fff;border-radius:1px}
+.bveg{background:#388E3C}
+.bnonveg{background:#D32F2F}
+.mitem-body{padding:14px}
+.mitem-body h4{font-family:'Playfair Display',serif;color:var(--text);font-size:.95rem;margin-bottom:4px}
+.mitem-body small{color:var(--muted);font-size:.72rem;display:block;margin-bottom:12px}
+.mitem-footer{display:flex;justify-content:space-between;align-items:center}
+.mprice{font-family:'Playfair Display',serif;font-size:1.05rem;color:var(--crimson);font-weight:700}
+.qty-ctrl{display:flex;align-items:center;gap:8px}
+.qbtn{width:28px;height:28px;background:var(--gold);border:none;color:var(--dark);font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;font-weight:700;transition:all .2s;flex-shrink:0}
+.qbtn:hover{background:var(--crimson);color:#fff}
+.qnum{font-weight:700;font-size:.88rem;min-width:18px;text-align:center}
+.mitem-special{background:linear-gradient(135deg,var(--dark),#2d0505);color:#fff;border:1px solid rgba(212,175,55,.35)}
+.mitem-special h4{color:var(--gold-l)}
+.mitem-special small{color:rgba(255,255,255,.55)}
+.mitem-special .mprice{color:var(--gold)}
+
+/* Cart bar */
+#cart-bar{position:fixed;bottom:0;left:0;right:0;background:var(--dark);border-top:3px solid var(--gold);padding:14px 5%;display:flex;justify-content:space-between;align-items:center;z-index:999;transform:translateY(100%);transition:transform .3s;gap:15px}
+#cart-bar.vis{transform:translateY(0)}
+.cart-count-badge{background:var(--gold);color:var(--dark);padding:4px 12px;font-weight:700;font-size:.82rem}
+.cart-total{font-family:'Playfair Display',serif;font-size:1.15rem;color:var(--gold);white-space:nowrap}
+.cart-total span{color:rgba(255,255,255,.6);font-size:.8rem;margin-right:5px}
+.cart-acts{display:flex;gap:8px;flex-wrap:wrap}
+.cbtn{padding:10px 18px;border:none;cursor:pointer;font-weight:700;font-size:.8rem;display:flex;align-items:center;gap:7px;transition:all .3s;white-space:nowrap}
+.cbtn-wa{background:#25D366;color:#fff}
+.cbtn-wa:hover{background:#1da851}
+.cbtn-em{background:var(--crimson);color:#fff}
+.cbtn-em:hover{background:#6b0000}
+.cbtn-cl{background:transparent;color:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.25)}
+.cbtn-cl:hover{color:#fff;border-color:#fff}
+
+/* ========== BOOKING PAGE ========== */
+.booking-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;max-width:1000px;margin:0 auto}
+.book-card{background:#fff;padding:38px;border-top:4px solid var(--gold);box-shadow:0 8px 30px rgba(0,0,0,.07)}
+.book-card h2{font-family:'Playfair Display',serif;color:var(--crimson);font-size:1.45rem;margin-bottom:25px;display:flex;align-items:center;gap:10px}
+.book-card h2 i{color:var(--gold)}
+.fg{margin-bottom:18px}
+.fg label{display:block;font-size:.72rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:7px}
+.fg input,.fg textarea,.fg select{width:100%;padding:11px 14px;border:1.5px solid rgba(212,175,55,.3);background:var(--ivory);font-family:'Lato',sans-serif;font-size:.9rem;color:var(--text);outline:none;transition:border-color .3s}
+.fg input:focus,.fg textarea:focus,.fg select:focus{border-color:var(--gold)}
+.fg textarea{height:90px;resize:vertical}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+.sub-btns{display:flex;flex-direction:column;gap:12px;margin-top:8px}
+.sbtn{display:flex;align-items:center;justify-content:center;gap:10px;padding:14px;border:none;cursor:pointer;font-size:.88rem;font-weight:700;letter-spacing:1px;transition:all .3s;font-family:'Lato',sans-serif}
+.sbtn-wa{background:#25D366;color:#fff}
+.sbtn-wa:hover{background:#1da851}
+.sbtn-em{background:var(--crimson);color:#fff}
+.sbtn-em:hover{background:#6b0000}
+.book-info{background:var(--ivory-d);padding:22px;border-left:4px solid var(--gold);margin-top:25px}
+.book-info h4{font-family:'Playfair Display',serif;color:var(--crimson);margin-bottom:12px;font-size:1rem}
+.book-info p{font-size:.8rem;color:var(--muted);margin-bottom:7px;display:flex;align-items:flex-start;gap:8px}
+.book-info p i{color:var(--gold);margin-top:2px;flex-shrink:0}
+
+/* ========== REVIEWS PAGE ========== */
+.rat-summary{display:flex;gap:40px;align-items:center;justify-content:center;flex-wrap:wrap;padding:40px;background:#fff;border:1px solid rgba(212,175,55,.2);margin-bottom:50px;box-shadow:0 5px 20px rgba(0,0,0,.05)}
+.rat-big{text-align:center}
+.rat-big .rnum{font-family:'Playfair Display',serif;font-size:5rem;color:var(--crimson);line-height:1;font-weight:900}
+.rat-big .rstars{color:var(--gold);font-size:1.4rem;margin:5px 0}
+.rat-big .rtot{font-size:.75rem;color:var(--muted);letter-spacing:2px;text-transform:uppercase}
+.rat-bars{flex:1;max-width:280px}
+.rbar-row{display:flex;align-items:center;gap:10px;margin-bottom:9px}
+.rbar-row span{font-size:.78rem;color:var(--muted);width:30px}
+.rbar-bg{flex:1;height:8px;background:#eee;border-radius:4px;overflow:hidden}
+.rbar-fill{height:100%;background:var(--gold);border-radius:4px}
+.rev-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:22px}
+.rev-card{background:#fff;padding:24px;border:1px solid rgba(212,175,55,.18);transition:all .3s;position:relative}
+.rev-card:hover{border-color:var(--gold);box-shadow:0 8px 28px rgba(0,0,0,.07);transform:translateY(-3px)}
+.rev-card::before{content:'\201C';position:absolute;top:-8px;left:18px;font-family:'Playfair Display',serif;font-size:5rem;color:var(--gold);opacity:.25;line-height:1}
+.rev-head{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.rev-av{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--crimson),var(--gold));display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:1.1rem;color:#fff;font-weight:700;flex-shrink:0}
+.rev-info h4{font-family:'Playfair Display',serif;color:var(--text);font-size:.92rem;margin-bottom:2px}
+.rev-info .rmeta{font-size:.68rem;color:var(--muted)}
+.rev-stars{color:var(--gold);font-size:.82rem;margin-bottom:9px}
+.rev-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.rev-tag{background:var(--ivory-d);color:var(--muted);padding:3px 8px;font-size:.66rem;border-radius:1px}
+.rev-txt{color:var(--muted);font-size:.88rem;line-height:1.75;font-family:'Cormorant Garamond',serif;font-size:.98rem}
+
+/* ========== CONTACT PAGE ========== */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:45px}
+.cinfo-box{background:#fff;padding:38px;border-top:4px solid var(--gold)}
+.cinfo-box h2{font-family:'Playfair Display',serif;color:var(--crimson);margin-bottom:28px;font-size:1.45rem}
+.citem{display:flex;gap:14px;margin-bottom:22px;align-items:flex-start}
+.cicon{width:44px;height:44px;background:var(--crimson);display:flex;align-items:center;justify-content:center;color:#fff;font-size:.95rem;flex-shrink:0;border-radius:2px}
+.ctext h4{font-weight:700;font-size:.72rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.ctext a,.ctext p{color:var(--text);text-decoration:none;font-size:.92rem;line-height:1.5;transition:color .3s;display:block}
+.ctext a:hover{color:var(--crimson)}
+.social-row{display:flex;gap:10px;margin-top:22px;flex-wrap:wrap}
+.soc-link{width:40px;height:40px;display:flex;align-items:center;justify-content:center;border:2px solid var(--gold);color:var(--gold);font-size:.95rem;text-decoration:none;transition:all .3s;border-radius:2px}
+.soc-link:hover{background:var(--gold);color:var(--dark)}
+.map-box{margin-top:22px;border:3px solid var(--gold)}
+.map-box iframe{display:block;width:100%;height:300px;border:none}
+.cform-box{background:#fff;padding:38px;border-top:4px solid var(--crimson)}
+.cform-box h2{font-family:'Playfair Display',serif;color:var(--crimson);margin-bottom:25px;font-size:1.45rem}
+.msg-btns{display:flex;flex-direction:column;gap:12px;margin-top:8px}
+.mbtn{display:flex;align-items:center;justify-content:center;gap:10px;padding:13px;border:none;cursor:pointer;font-size:.88rem;font-weight:700;letter-spacing:1px;transition:all .3s}
+.mbtn-wa{background:#25D366;color:#fff}
+.mbtn-wa:hover{background:#1da851}
+.mbtn-em{background:var(--crimson);color:#fff}
+.mbtn-em:hover{background:#6b0000}
+
+/* ========== FOOTER ========== */
+footer{background:#0a0200;color:rgba(255,255,255,.65);padding:60px 5% 28px}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1.2fr;gap:40px;margin-bottom:40px}
+.foot-brand .fname{font-family:'Playfair Display',serif;font-size:1.25rem;color:var(--gold);margin-bottom:8px}
+.foot-brand p{font-size:.82rem;line-height:1.75;margin-bottom:18px}
+.foot-sec h4{font-family:'Playfair Display',serif;color:var(--gold);font-size:.95rem;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid rgba(212,175,55,.25)}
+.foot-links{list-style:none}
+.foot-links li{margin-bottom:8px}
+.foot-links li a{color:rgba(255,255,255,.55);text-decoration:none;font-size:.82rem;transition:color .3s;cursor:pointer}
+.foot-links li a:hover{color:var(--gold)}
+.foot-contacts{list-style:none}
+.foot-contacts li{display:flex;gap:10px;margin-bottom:10px;font-size:.8rem;color:rgba(255,255,255,.55)}
+.foot-contacts li i{color:var(--gold);width:15px;flex-shrink:0;margin-top:2px}
+.foot-contacts li a{color:rgba(255,255,255,.55);text-decoration:none;transition:color .3s}
+.foot-contacts li a:hover{color:var(--gold)}
+.foot-soc{display:flex;gap:10px;margin-top:15px}
+.foot-soc a{width:34px;height:34px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(212,175,55,.35);color:rgba(212,175,55,.6);font-size:.85rem;text-decoration:none;transition:all .3s;border-radius:1px}
+.foot-soc a:hover{background:var(--gold);color:var(--dark);border-color:var(--gold)}
+.foot-bottom{border-top:1px solid rgba(212,175,55,.15);padding-top:22px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.foot-bottom p{font-size:.75rem}
+.foot-bottom .heart{color:var(--crimson)}
+
+/* BACK TO TOP */
+#btt{position:fixed;bottom:25px;right:25px;width:44px;height:44px;background:var(--gold);color:var(--dark);border:none;cursor:pointer;font-size:1.1rem;display:none;align-items:center;justify-content:center;z-index:997;transition:all .3s}
+#btt:hover{background:var(--crimson);color:#fff}
+#btt.vis{display:flex}
+
+/* SCROLL REVEAL */
+.sr{opacity:0;transform:translateY(40px);transition:all .7s ease}
+.sr.rev{opacity:1;transform:translateY(0)}
+.sr2{transition-delay:.15s}
+.sr3{transition-delay:.3s}
+.sr4{transition-delay:.45s}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  .cuisine-grid{grid-template-columns:repeat(3,1fr)}
+  .feat-grid{grid-template-columns:repeat(2,1fr)}
+  .plink-grid{grid-template-columns:repeat(3,1fr)}
+  .footer-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:768px){
+  .nav-links{display:none}
+  .hamburger{display:flex}
+  .cuisine-grid{grid-template-columns:repeat(2,1fr)}
+  .feat-grid{grid-template-columns:1fr 1fr}
+  .plink-grid{grid-template-columns:repeat(2,1fr)}
+  .showcase{grid-template-columns:1fr}
+  .about-main{grid-template-columns:1fr}
+  .about-logo-box{position:static}
+  .booking-grid{grid-template-columns:1fr}
+  .contact-grid{grid-template-columns:1fr}
+  .rev-grid{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr}
+  .frow{grid-template-columns:1fr}
+  .hero-stats{gap:25px}
+  #cart-bar{flex-direction:column;gap:10px;align-items:flex-start}
+  .cart-acts{flex-wrap:wrap}
+}
+@media(max-width:480px){
+  .cuisine-grid{grid-template-columns:repeat(2,1fr)}
+  .feat-grid{grid-template-columns:1fr}
+  .plink-grid{grid-template-columns:1fr 1fr}
+  .hero h1{font-size:2.2rem}
+  .booking-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a class="nav-logo" onclick="showPage('home')">
+      <img src="https://i.ibb.co/pvmcY4qw/FB-IMG-1773352524496.jpg" alt="Logo" onerror="this.src='https://via.placeholder.com/200x200/8B0000/D4AF37?text=De+Lounge'">
+      <div class="nav-logo-text">De Lounge Cafe<small>Janakpur Dham, Nepal</small></div>
+    </a>
+    <ul class="nav-links">
+      <li><a onclick="showPage('home')" class="active" id="nav-home">Home</a></li>
+      <li><a onclick="showPage('about')" id="nav-about">About Us</a></li>
+      <li><a onclick="showPage('menu')" id="nav-menu">Menu</a></li>
+      <li><a onclick="showPage('booking')" id="nav-booking">Booking & Delivery</a></li>
+      <li><a onclick="showPage('reviews')" id="nav-reviews">Reviews</a></li>
+      <li><a onclick="showPage('contact')" id="nav-contact">Contact Us</a></li>
+    </ul>
+    <div class="hamburger" onclick="toggleMobileNav()" id="hamburger">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+  <div class="mobile-nav" id="mobile-nav">
+    <a onclick="showPage('home');toggleMobileNav()">🏠 Home</a>
+    <a onclick="showPage('about');toggleMobileNav()">📖 About Us</a>
+    <a onclick="showPage('menu');toggleMobileNav()">🍽 Menu</a>
+    <a onclick="showPage('booking');toggleMobileNav()">📅 Booking & Delivery</a>
+    <a onclick="showPage('reviews');toggleMobileNav()">⭐ Reviews</a>
+    <a onclick="showPage('contact');toggleMobileNav()">📞 Contact Us</a>
+  </div>
+</nav>
+
+<!-- ==================== HOME PAGE ==================== -->
+<div id="page-home" class="page active">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-svg-bg"></div>
+    <svg class="hero-corner tl" viewBox="0 0 120 120" fill="none">
+      <path d="M10 10 Q60 10 110 60 Q60 60 10 110 Z" stroke="#D4AF37" stroke-width="1.5" fill="none"/>
+      <path d="M20 20 Q55 20 95 55" stroke="#D4AF37" stroke-width="1" fill="none"/>
+      <circle cx="30" cy="30" r="6" stroke="#D4AF37" stroke-width="1" fill="none"/>
+      <path d="M50 10 Q50 50 90 50" stroke="#8B0000" stroke-width="1" fill="none"/>
+      <circle cx="70" cy="70" r="4" fill="#D4AF37" opacity=".6"/>
+    </svg>
+    <svg class="hero-corner tr" viewBox="0 0 120 120" fill="none">
+      <path d="M10 10 Q60 10 110 60 Q60 60 10 110 Z" stroke="#D4AF37" stroke-width="1.5" fill="none"/>
+      <path d="M20 20 Q55 20 95 55" stroke="#D4AF37" stroke-width="1" fill="none"/>
+      <circle cx="30" cy="30" r="6" stroke="#D4AF37" stroke-width="1" fill="none"/>
+    </svg>
+    <svg class="hero-corner bl" viewBox="0 0 120 120" fill="none">
+      <path d="M10 10 Q60 10 110 60 Q60 60 10 110 Z" stroke="#D4AF37" stroke-width="1.5" fill="none"/>
+      <circle cx="30" cy="30" r="6" stroke="#D4AF37" stroke-width="1" fill="none"/>
+    </svg>
+    <svg class="hero-corner br" viewBox="0 0 120 120" fill="none">
+      <path d="M10 10 Q60 10 110 60 Q60 60 10 110 Z" stroke="#D4AF37" stroke-width="1.5" fill="none"/>
+      <circle cx="30" cy="30" r="6" stroke="#D4AF37" stroke-width="1" fill="none"/>
+    </svg>
+
+    <div class="hero-content">
+      <div class="hero-badge">✦ Janakpur Dham's Cosy Lounge ✦</div>
+      <img class="hero-logo" src="https://i.ibb.co/pvmcY4qw/FB-IMG-1773352524496.jpg" alt="De Lounge Cafe" onerror="this.src='https://via.placeholder.com/200x200/8B0000/D4AF37?text=De+Lounge'">
+      <h1>De <span class="gold">Lounge</span><br>Cafe</h1>
+      <p class="hero-tag">✦ Relax, Sip & Savour the Good Life ✦</p>
+      <p class="hero-sub">Cafe · Lounge · Snacks · Coffee · Desserts</p>
+      <div class="hero-btns">
+        <a href="tel:9819827217" class="btn-royal"><span><i class="fas fa-phone"></i> Call Us Now</span></a>
+        <button class="btn-outline" onclick="showPage('menu')"><i class="fas fa-utensils"></i> View Menu</button>
+        <a href="https://wa.me/9779819827217" target="_blank" class="btn-whatsapp-g"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="num">5+</div><div class="lbl">Menu Sections</div></div>
+      <div class="hero-stat"><div class="num">60+</div><div class="lbl">Menu Items</div></div>
+      <div class="hero-stat"><div class="num">15+</div><div class="lbl">Reviews</div></div>
+      <div class="hero-stat"><div class="num">3.5★</div><div class="lbl">Google Rating</div></div>
+    </div>
+    <div class="hero-scroll"><i class="fas fa-chevron-down"></i></div>
+  </section>
+
+  <div class="mstrip"></div>
+
+  <!-- HIGHLIGHTS SECTION -->
+  <section class="sec sec-lt">
+    <div class="sh sr">
+      <span class="orn">✦ ✦ ✦</span>
+      <h2>What We Offer</h2>
+      <p>A trendy, cosy lounge in the heart of Janakpur — serving snacks, great coffee, desserts, and full meals.</p>
+      <div class="gd"><div class="dm"></div></div>
+    </div>
+    <div class="cuisine-grid">
+      <div class="cuisine-card sr sr2"><span class="emo">☕</span><h3>Great Coffee</h3><p>Aromatic brews & specialty drinks</p></div>
+      <div class="cuisine-card sr sr2"><span class="emo">🍰</span><h3>Desserts</h3><p>Sweet endings done right</p></div>
+      <div class="cuisine-card sr sr3"><span class="emo">🍗</span><h3>Snacks</h3><p>Veg & non-veg bites & starters</p></div>
+      <div class="cuisine-card sr sr3"><span class="emo">🍜</span><h3>Noodles</h3><p>Chowmein & stir-fried specials</p></div>
+      <div class="cuisine-card sr sr4"><span class="emo">🍚</span><h3>Rice & Curry</h3><p>Hearty meals for every appetite</p></div>
+    </div>
+  </section>
+
+  <!-- RESTAURANT SHOWCASE -->
+  <section class="sec sec-cr">
+    <div class="showcase">
+      <div class="showcase-img-wrap sr">
+        <img src="https://i.ibb.co/W49B1rFR/Screenshot-20260320-064602-Maps.jpg" alt="De Lounge Cafe" onerror="this.src='https://via.placeholder.com/600x450/8B0000/D4AF37?text=De+Lounge+Cafe'">
+      </div>
+      <div class="showcase-txt sr sr2">
+        <h2>Where Casual Meets Charming in Janakpur</h2>
+        <p>De Lounge Cafe is Janakpur Dham's most relaxed and stylish cafe destination. With soothing music, perfect lighting, and a charming ambience, every visit feels like a retreat from the ordinary.</p>
+        <p>Whether you're a solo traveller looking for a clean, chill space, a group of friends out for a great evening, or a tourist wanting an English-menu cafe — De Lounge is the place for you. Outdoor seating, a full bar, great coffee, and a menu that satisfies every craving.</p>
+        <div style="display:flex;gap:15px;flex-wrap:wrap;margin-top:10px">
+          <button class="btn-royal" onclick="showPage('menu')"><span><i class="fas fa-utensils"></i> Explore Menu</span></button>
+          <button class="btn-outline" onclick="showPage('about')"><i class="fas fa-book-open"></i> Our Story</button>
+        </div>
+        <div class="amen-grid">
+          <div class="amen-item"><i class="fas fa-concierge-bell"></i><span>Dine-In</span></div>
+          <div class="amen-item"><i class="fas fa-shopping-bag"></i><span>Takeaway</span></div>
+          <div class="amen-item"><i class="fas fa-glass-martini-alt"></i><span>Bar on Site</span></div>
+          <div class="amen-item"><i class="fas fa-chair"></i><span>Outdoor Seating</span></div>
+          <div class="amen-item"><i class="fas fa-users"></i><span>Group Friendly</span></div>
+          <div class="amen-item"><i class="fas fa-child"></i><span>Kids Friendly</span></div>
+          <div class="amen-item"><i class="fas fa-mobile-alt"></i><span>NFC Payments</span></div>
+          <div class="amen-item"><i class="fas fa-parking"></i><span>Free Street Parking</span></div>
+          <div class="amen-item"><i class="fas fa-calendar-check"></i><span>Accepts Reservations</span></div>
+          <div class="amen-item"><i class="fas fa-restroom"></i><span>Toilet</span></div>
+          <div class="amen-item"><i class="fas fa-music"></i><span>Soothing Music</span></div>
+          <div class="amen-item"><i class="fas fa-globe"></i><span>English Menu</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY CHOOSE US -->
+  <section class="sec sec-dk">
+    <div class="sh sr">
+      <span class="orn">✦ ✦ ✦</span>
+      <h2 style="color:var(--gold)">Why Choose De Lounge</h2>
+      <p style="color:rgba(255,255,255,.6)">A cafe experience that's worth every visit — cosy, trendy, and genuinely welcoming.</p>
+      <div class="gd"><div class="dm"></div></div>
+    </div>
+    <div class="feat-grid">
+      <div class="feat-card sr">
+        <div class="icon"><i class="fas fa-coffee"></i></div>
+        <h3>Great Coffee</h3>
+        <p>Our highlight — from classic brews to specialty blends, every cup is crafted with care.</p>
+      </div>
+      <div class="feat-card sr sr2">
+        <div class="icon"><i class="fas fa-couch"></i></div>
+        <h3>Cosy Lounge Vibes</h3>
+        <p>Charming decor, perfect lighting, comfortable seating and soothing music — a true escape.</p>
+      </div>
+      <div class="feat-card sr sr3">
+        <div class="icon"><i class="fas fa-ice-cream"></i></div>
+        <h3>Great Desserts</h3>
+        <p>Our dessert menu is a highlight — sweet finales that linger in your memory long after.</p>
+      </div>
+      <div class="feat-card sr sr4">
+        <div class="icon"><i class="fas fa-sun"></i></div>
+        <h3>Outdoor Seating</h3>
+        <p>Our outdoor seating area is loved by guests — enjoy your meal in the open air of Janakpur.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- POPULAR DINING TIMES -->
+  <section class="sec sec-lt">
+    <div class="sh sr">
+      <span class="orn">✦ ✦ ✦</span>
+      <h2>When to Visit</h2>
+      <p>Open for lunch, dinner, and late-night bites — we're here whenever you need us.</p>
+      <div class="gd"><div class="dm"></div></div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:25px">
+      <div style="text-align:center;padding:35px 20px;background:#fff;border:1px solid rgba(212,175,55,.25);transition:all .3s" class="sr cuisine-card">
+        <span style="font-size:3rem;display:block;margin-bottom:15px">🌤</span>
+        <h3 style="font-family:'Playfair Display',serif;color:var(--crimson);font-size:1.1rem;margin-bottom:8px">Lunch</h3>
+        <p style="color:var(--muted);font-size:.82rem">Light bites & full meals<br>11:00 AM – 3:00 PM</p>
+      </div>
+      <div style="text-align:center;padding:35px 20px;background:#fff;border:1px solid rgba(212,175,55,.25);transition:all .3s" class="sr sr2 cuisine-card">
+        <span style="font-size:3rem;display:block;margin-bottom:15px">🌙</span>
+        <h3 style="font-family:'Playfair Display',serif;color:var(--crimson);font-size:1.1rem;margin-bottom:8px">Dinner</h3>
+        <p style="color:var(--muted);font-size:.82rem">An evening to remember<br>6:00 PM – 10:00 PM</p>
+      </div>
+      <div style="text-align:center;padding:35px 20px;background:#fff;border:1px solid rgba(212,175,55,.25);transition:all .3s" class="sr sr3 cuisine-card">
+        <span style="font-size:3rem;display:block;margin-bottom:15px">🍰</span>
+        <h3 style="font-family:'Playfair Display',serif;color:var(--crimson);font-size:1.1rem;margin-bottom:8px">Desserts</h3>
+        <p style="color:var(--muted);font-size:.82rem">Sweet finales all day<br>All Hours</p>
+      </div>
+      <div style="text-align:center;padding:35px 20px;background:#fff;border:1px solid rgba(212,175,55,.25);transition:all .3s" class="sr sr4 cuisine-card">
+        <span style="font-size:3rem;display:block;margin-bottom:15px">🌃</span>
+        <h3 style="font-family:'Playfair Display',serif;color:var(--crimson);font-size:1.1rem;margin-bottom:8px">Late Night</h3>
+        <p style="color:var(--muted);font-size:.82rem">Late night food & drinks<br>Until closing</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPLORE PAGES -->
+  <section class="sec sec-cr">
+    <div class="sh sr">
+      <span class="orn">✦ ✦ ✦</span>
+      <h2>Explore De Lounge</h2>
+      <p>Everything you need for a perfect cafe experience — at your fingertips.</p>
+      <div class="gd"><div class="dm"></div></div>
+    </div>
+    <div class="plink-grid">
+      <div class="plink-card sr" onclick="showPage('about')">
+        <i class="fas fa-book-open"></i>
+        <h3>About Us</h3>
+        <p>Our story & atmosphere</p>
+      </div>
+      <div class="plink-card sr sr2" onclick="showPage('menu')">
+        <i class="fas fa-utensils"></i>
+        <h3>Our Menu</h3>
+        <p>60+ items across categories</p>
+      </div>
+      <div class="plink-card sr sr3" onclick="showPage('booking')">
+        <i class="fas fa-calendar-alt"></i>
+        <h3>Book a Table</h3>
+        <p>Reserve or order takeaway</p>
+      </div>
+      <div class="plink-card sr sr4" onclick="showPage('reviews')">
+        <i class="fas fa-star"></i>
+        <h3>Reviews</h3>
+        <p>What our guests say</p>
+      </div>
+      <div class="plink-card sr sr4" onclick="showPage('contact')">
+        <i class="fas fa-map-marker-alt"></i>
+        <h3>Contact Us</h3>
+        <p>Find us in Janakpur Dham</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div class="foot-brand">
+        <div class="fname">De Lounge Cafe</div>
+        <p>Janakpur Dham's cosy and trendy cafe lounge — great coffee, great food, and a charming ambience that keeps you coming back.</p>
+        <div class="foot-soc">
+          <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://wa.me/9779819827217" title="WhatsApp" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+      <div class="foot-sec">
+        <h4>Quick Links</h4>
+        <ul class="foot-links">
+          <li><a onclick="showPage('home')">Home</a></li>
+          <li><a onclick="showPage('about')">About Us</a></li>
+          <li><a onclick="showPage('menu')">Our Menu</a></li>
+          <li><a onclick="showPage('booking')">Booking & Delivery</a></li>
+          <li><a onclick="showPage('reviews')">Reviews</a></li>
+          <li><a onclick="showPage('contact')">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="foot-sec">
+        <h4>Menu</h4>
+        <ul class="foot-links">
+          <li><a onclick="showPage('menu')">Veg Snacks</a></li>
+          <li><a onclick="showPage('menu')">Non-Veg Snacks</a></li>
+          <li><a onclick="showPage('menu')">Soup</a></li>
+          <li><a onclick="showPage('menu')">Rice & Curry</a></li>
+          <li><a onclick="showPage('menu')">Noodles</a></li>
+        </ul>
+      </div>
+      <div class="foot-sec">
+        <h4>Contact</h4>
+        <ul class="foot-contacts">
+          <li><i class="fas fa-map-marker-alt"></i><span>PWM9+J3X, Bajrang Chowk, Hotel 7 Star, Janakpur 45600</span></li>
+          <li><i class="fas fa-phone"></i><a href="tel:9819827217">981-9827217</a></li>
+          <li><i class="fab fa-whatsapp"></i><a href="https://wa.me/9779819827217" target="_blank">+977-9819827217</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="mstrip" style="margin:0 -5% 25px;"></div>
+    <div class="foot-bottom">
+      <p>© 2024 De Lounge Cafe. All rights reserved. <span class="heart">❤</span> Janakpur Dham, Nepal</p>
+      <p>A cosy lounge experience in the heart of Janakpur</p>
+    </div>
+  </footer>
+</div>
+<!-- END HOME PAGE -->
+
+<!-- ==================== ABOUT PAGE ==================== -->
+<div id="page-about" class="page">
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <div class="hero-badge">✦ Our Story ✦</div>
+      <h1>About <span style="color:var(--gold)">De Lounge</span></h1>
+      <p class="sub">Janakpur's most charming cafe destination</p>
+    </div>
+  </div>
+  <div class="mstrip"></div>
+
+  <section class="sec sec-lt">
+    <div class="about-main">
+      <div class="about-logo-box sr">
+        <img class="main-logo" src="https://i.ibb.co/pvmcY4qw/FB-IMG-1773352524496.jpg" alt="De Lounge Cafe Logo" onerror="this.src='https://via.placeholder.com/200x200/8B0000/D4AF37?text=De+Lounge'">
+        <div class="aname">De Lounge Cafe</div>
+        <div class="aloc"><i class="fas fa-map-marker-alt" style="color:var(--gold)"></i> Janakpur Dham, Nepal</div>
+        <div class="about-img-gallery">
+          <img src="https://i.ibb.co/Vc9dkNLd/Screenshot-20260320-064612-Maps.jpg" alt="De Lounge Cafe Interior" onerror="this.src='https://via.placeholder.com/200x200/8B0000/D4AF37?text=De+Lounge'">
+          <img src="https://i.ibb.co/SX24yRWs/Screenshot-20260320-064608-Maps.jpg" alt="De Lounge Cafe Ambiance" onerror="this.src='https://via.placeholder.com/200x200/8B0000/D4AF37?text=De+Lounge'">
+          <img src="https://i.ibb.co/skR2bwv/Screenshot-20260320-064630-Maps.jpg" alt="De Lounge Cafe Food" onerror="this.src='https://via.placeholder.com/200x200/8B0000/D4AF37?text=De+Lounge'" style="grid-column:span 2;height:120px">
+        </div>
+        <div style="margin-top:20px;display:flex;flex-direction:column;gap:10px">
+          <a href="tel:9819827217" class="btn-royal" style="justify-content:center"><span><i class="fas fa-phone"></i> Call Now</span></a>
+          <a href="https://wa.me/9779819827217" target="_blank" class="btn-whatsapp-g" style="justify-content:center"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+        </div>
+        <div style="margin-top:20px;display:flex;gap:10px;justify-content:center">
+          <a href="#" class="soc-link" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="soc-link" title="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://maps.app.goo.gl/" class="soc-link" title="Google Maps" target="_blank"><i class="fab fa-google"></i></a>
+        </div>
+      </div>
+      <div class="about-content sr sr2">
+        <h2>A Perfect Destination to Relax & Indulge</h2>
+        <p>De Lounge Cafe is Janakpur Dham's go-to destination for those who appreciate great ambience, quality food, and a relaxed pace of life. Located on the ground floor of Hotel 7 Star at Bajrang Chowk, our cafe combines stylish interiors with a warm, welcoming atmosphere.</p>
+        <p>What sets De Lounge apart is our attention to detail — from the charming decor and perfect lighting to the soothing music that plays in the background. Guests love our outdoor seating area, which offers a pleasant place to unwind while enjoying the energy of Janakpur's streets.</p>
+        <p>Our menu caters to diverse tastes — whether you're craving crispy veg snacks, a hearty chicken curry, comforting noodles, or a rich dessert to end your meal. We're proud to offer an English-language menu, making us a favourite among tourists and foreign visitors to Janakpur.</p>
+        <p>From university students and solo diners to family groups and tourists — De Lounge is Janakpur's most versatile and welcoming cafe lounge.</p>
+        <div style="display:flex;gap:15px;flex-wrap:wrap;margin-top:25px">
+          <button class="btn-royal" onclick="showPage('menu')"><span><i class="fas fa-utensils"></i> View Menu</span></button>
+          <button class="btn-outline" onclick="showPage('booking')"><i class="fas fa-calendar-alt"></i> Book a Table</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec sec-cr">
+    <div class="sh sr">
+      <span class="orn">✦ ✦ ✦</span>
+      <h2>Our Services & Facilities</h2>
+      <p>Everything we offer to make your visit truly special.</p>
+      <div class="gd"><div class="dm"></div></div>
+    </div>
+    <div class="svc-grid">
+      <div class="svc-block sr">
+        <h3><i class="fas fa-concierge-bell"></i> Service Options</h3>
+        <div class="tags">
+          <span class="tag">🍽 Dine-In</span><span class="tag">📦 Takeaway</span>
+        </div>
+      </div>
+      <div class="svc-block sr sr2">
+        <h3><i class="fas fa-star"></i> Highlights</h3>
+        <div class="tags">
+          <span class="tag">☕ Great Coffee</span><span class="tag">🍰 Great Dessert</span>
+        </div>
+      </div>
+      <div class="svc-block sr sr3">
+        <h3><i class="fas fa-sun"></i> Popular For</h3>
+        <div class="tags">
+          <span class="tag">🌤 Lunch</span><span class="tag">🌙 Dinner</span><span class="tag">👤 Solo Dining</span>
+        </div>
+      </div>
+      <div class="svc-block sr sr4">
+        <h3><i class="fas fa-glass-cheers"></i> Offerings</h3>
+        <div class="tags">
+          <span class="tag">🍺 Alcohol</span><span class="tag">🍺 Beer</span><span class="tag">☕ Coffee</span><span class="tag">🥃 Spirits</span><span class="tag">🌙 Late Night Food</span><span class="tag">⚡ Quick Bites</span><span class="tag">🍽 All You Can Eat</span><span class="tag">🫕 Small Plates</span>
+        </div>
+      </div>
+      <div class="svc-block sr">
+        <h3><i class="fas fa-utensils"></i> Dining Options</h3>
+        <div class="tags">
+          <span class="tag">🌤 Lunch</span><span class="tag">🌙 Dinner</span><span class="tag">🍮 Dessert</span><span class="tag">🧑‍🍽 Table Service</span>
+        </div>
+      </div>
+      <div class="svc-block sr sr2">
+        <h3><i class="fas fa-leaf"></i> Amenities</h3>
+        <div class="tags">
+          <span class="tag">🍸 Bar on Site</span><span class="tag">🚻 Toilet</span>
+        </div>
+      </div>
+      <div class="svc-block sr sr3">
+        <h3><i class="fas fa-palette"></i> Atmosphere</h3>
+        <div class="tags">
+          <span class="tag">😌 Casual</span><span class="tag">🛋 Cosy</span><span class="tag">✨ Trendy</span><span class="tag">📸 Instagram-worthy</span>
+        </div>
+      </div>
+      <div class="svc-block sr sr4">
+        <h3><i class="fas fa-users"></i> Crowd</h3>
+        <div class="tags">
+          <span class="tag">👨‍👩‍👧 Groups</span><span class="tag">🌍 Tourists</span><span class="tag">🎓 Students</span>
+        </div>
+      </div>
+      <div class="svc-block sr">
+        <h3><i class="fas fa-credit-card"></i> Payments & Parking</h3>
+        <div class="tags">
+          <span class="tag">📱 NFC Mobile</span><span class="tag">🅿️ Free Street Parking</span><span class="tag">📅 Accepts Reservations</span>
+        </div>
+      </div>
+      <div class="svc-block sr sr2">
+        <h3><i class="fas fa-baby"></i> For Families</h3>
+        <div class="tags">
+          <span class="tag">👶 Good for Kids</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-grid">
+      <div class="foot-brand">
+        <div class="fname">De Lounge Cafe</div>
+        <p>Cosy, trendy cafe lounge in Janakpur Dham celebrating great food, great coffee, and great vibes.</p>
+        <div class="foot-soc">
+          <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://wa.me/9779819827217" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+      <div class="foot-sec">
+        <h4>Quick Links</h4>
+        <ul class="foot-links">
+          <li><a onclick="showPage('home')">Home</a></li>
+          <li><a onclick="showPage('about')">About Us</a></li>
+          <li><a onclick="showPage('menu')">Our Menu</a></li>
+          <li><a onclick="showPage('booking')">Booking & Delivery</a></li>
+          <li><a onclick="showPage('reviews')">Reviews</a></li>
+          <li><a onclick="showPage('contact')">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="foot-sec">
+        <h4>Our Location</h4>
+        <ul class="foot-contacts">
+          <li><i class="fas fa-map-marker-alt"></i><span>Bajrang Chowk, Janakpur 45600</span></li>
+          <li><i class="fas fa-store"></i><span>Ground Floor, Hotel 7 Star</span></li>
+        </ul>
+      </div>
+      <div class="foot-sec">
+        <h4>Contact</h4>
+        <ul class="foot-contacts">
+          <li><i class="fas fa-phone"></i><a href="tel:9819827217">981-9827217</a></li>
+          <li><i class="fab fa-whatsapp"></i><a href="https://wa.me/9779819827217" target="_blank">+977-9819827217</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="mstrip" style="margin:0 -5% 25px;"></div>
+    <div class="foot-bottom">
+      <p>© 2024 De Lounge Cafe. All rights reserved. <span class="heart">❤</span></p>
+    </div>
+  </footer>
+</div>
+<!-- END ABOUT PAGE -->
+
+<!-- ==================== MENU PAGE ==================== -->
+<div id="page-menu" class="page">
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <div class="hero-badge">✦ Our Menu ✦</div>
+      <h1>Our <span style="color:var(--gold)">Menu</span></h1>
+      <p class="sub">60+ items crafted with fresh ingredients & authentic flavors</p>
+    </div>
+  </div>
+  <div class="mstrip"></div>
+
+  <div class="menu-tabs-bar">
+    <div class="mtab active" onclick="switchMenuTab('veg-snacks',this)">🥦 Veg Snacks</div>
+    <div class="mtab" onclick="switchMenuTab('nonveg-snacks',this)">🍗 Non-Veg Snacks</div>
+    <div class="mtab" onclick="switchMenuTab('soup',this)">🍲 Soup</div>
+    <div class="mtab" onclick="switchMenuTab('rice-curry',this)">🍚 Rice & Curry</div>
+    <div class="mtab" onclick="switchMenuTab('noodles',this)">🍜 Noodles</div>
+  </div>
+
+  <!-- VEG SNACKS -->
+  <div class="menu-sec active" id="msec-veg-snacks">
+    <div class="menu-sec-h"><h2>Vegetarian Snacks</h2><div class="msline"></div></div>
+    <p class="menu-sec-desc">Fresh, crispy and flavourful vegetarian bites — from classic street snacks to cafe-style creations.</p>
+    <div class="mitems-grid" id="veg-snacks-grid"></div>
+  </div>
+
+  <!-- NON-VEG SNACKS -->
+  <div class="menu-sec" id="msec-nonveg-snacks">
+    <div class="menu-sec-h"><h2>Non-Vegetarian Snacks</h2><div class="msline"></div></div>
+    <p class="menu-sec-desc">Succulent meats, crispy chicken and cafe specials — prepared with the finest spices and techniques.</p>
+    <div class="mitems-grid" id="nonveg-snacks-grid"></div>
+  </div>
+
+  <!-- SOUP -->
+  <div class="menu-sec" id="msec-soup">
+    <div class="menu-sec-h"><h2>Soup</h2><div class="msline"></div></div>
+    <p class="menu-sec-desc">Warm and comforting soups — perfect starters for any meal.</p>
+    <div class="mitems-grid" id="soup-grid"></div>
+  </div>
+
+  <!-- RICE & CURRY -->
+  <div class="menu-sec" id="msec-rice-curry">
+    <div class="menu-sec-h"><h2>Rice & Curry</h2><div class="msline"></div></div>
+    <p class="menu-sec-desc">Hearty mains — fragrant rice, rich curries and deeply spiced preparations.</p>
+    <div class="mitems-grid" id="rice-curry-grid"></div>
+  </div>
+
+  <!-- NOODLES -->
+  <div class="menu-sec" id="msec-noodles">
+    <div class="menu-sec-h"><h2>Noodles</h2><div class="msline"></div></div>
+    <p class="menu-sec-desc">Stir-fried, wok-tossed noodles in classic and signature cafe styles.</p>
+    <div class="mitems-grid" id="noodles-grid"></div>
+  </div>
+
+  <div style="height:80px"></div>
+
+  <footer>
+    <div class="footer-grid">
+      <div class="foot-brand">
+        <div class="fname">De Lounge Cafe</div>
+        <p>Janakpur Dham's cosy cafe lounge. Order via WhatsApp or visit us!</p>
+        <div class="foot-soc">
+          <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://wa.me/9779819827217" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+      <div class="foot-sec">
+        <h4>Quick Links</h4>
+        <ul class="foot-links">
+          <li><a onclick="showPage('home')">Home</a></li>
+          <li><a onclick="showPage('about')">About Us</a></li>
+          <li><a onclick="showPage('booking')">Order Now</a></li>
+          <li><a onclick="showPage('contact')">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="foot-sec">
+        <h4>Order</h4>
+        <ul class="foot-contacts">
+          <li><i class="fab fa-whatsapp"></i><a href="https://wa.me/9779819827217" target="_blank">+977-9819827217</a></li>
+          <li><i class="fas fa-phone"></i><a href="tel:9819827217">981-9827217</a></li>
+        </ul>
+      </div>
+      <div class="foot-sec">
+        <h4>Find Us</h4>
+        <ul class="foot-contacts">
+          <li><i class="fas fa-map-marker-alt"></i><span>Bajrang Chowk, Hotel 7 Star, Janakpur 45600</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="mstrip" style="margin:0 -5% 25px;"></div>
+    <div class="foot-bottom"><p>© 2024 De Lounge Cafe <span class="heart">❤</span></p></div>
+  </footer>
+</div>
+
+<!-- CART BAR (global) -->
+<div id="cart-bar">
+  <div class="cart-info">
+    <span class="cart-count-badge" id="cart-count-el">0 items</span>
+    <span class="cart-total"><span>Total:</span><span id="cart-total-el">Rs. 0</span></span>
+  </div>
+  <div class="cart-acts">
+    <button class="cbtn cbtn-wa" onclick="orderViaWhatsApp()"><i class="fab fa-whatsapp"></i> Order via WhatsApp</button>
+    <button class="cbtn cbtn-em" onclick="orderViaEmail()"><i class="fas fa-envelope"></i> Send to Email</button>
+    <button class="cbtn cbtn-cl" onclick="clearCart()"><i class="fas fa-trash"></i> Clear</button>
+  </div>
+</div>
+<!-- END MENU PAGE -->
+
+<!-- ==================== BOOKING PAGE ==================== -->
+<div id="page-booking" class="page">
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <div class="hero-badge">✦ Reserve Your Experience ✦</div>
+      <h1>Booking <span style="color:var(--gold)">&</span> Takeaway</h1>
+      <p class="sub">Reserve your table or place a takeaway order — we'll take care of the rest</p>
+    </div>
+  </div>
+  <div class="mstrip"></div>
+
+  <section class="sec sec-lt">
+    <div class="sh sr">
+      <span class="orn">✦ ✦ ✦</span>
+      <h2>Reserve or Order</h2>
+      <p>Your order details will be sent directly to our WhatsApp. We'll confirm promptly!</p>
+      <div class="gd"><div class="dm"></div></div>
+    </div>
+    <div class="booking-grid">
+      <!-- TABLE BOOKING -->
+      <div class="book-card sr">
+        <h2><i class="fas fa-chair"></i> Reserve a Table</h2>
+        <div class="fg">
+          <label>Your Full Name *</label>
+          <input type="text" id="b-name" placeholder="e.g. Ramesh Kumar">
+        </div>
+        <div class="fg">
+          <label>Phone Number *</label>
+          <input type="tel" id="b-phone" placeholder="+977-XXXXXXXXXX">
+        </div>
+        <div class="frow">
+          <div class="fg">
+            <label>Date *</label>
+            <input type="date" id="b-date">
+          </div>
+          <div class="fg">
+            <label>Time *</label>
+            <input type="time" id="b-time">
+          </div>
+        </div>
+        <div class="fg">
+          <label>Number of Guests *</label>
+          <select id="b-guests">
+            <option value="">Select...</option>
+            <option>1 person</option><option>2 persons</option><option>3 persons</option>
+            <option>4 persons</option><option>5 persons</option><option>6 persons</option>
+            <option>7-10 persons</option><option>10-20 persons</option><option>20+ persons</option>
+          </select>
+        </div>
+        <div class="fg">
+          <label>Special Requests</label>
+          <textarea id="b-note" placeholder="e.g. Birthday celebration, outdoor seating preferred, no garlic..."></textarea>
+        </div>
+        <div class="sub-btns">
+          <button class="sbtn sbtn-wa" onclick="bookTableWhatsApp()"><i class="fab fa-whatsapp"></i> Confirm via WhatsApp</button>
+          <button class="sbtn sbtn-em" onclick="bookTableEmail()"><i class="fas fa-envelope"></i> Confirm via Email</button>
+        </div>
+        <div class="book-info">
+          <h4><i class="fas fa-info-circle" style="color:var(--gold)"></i> Booking Info</h4>
+          <p><i class="fas fa-clock"></i> We confirm bookings within 30 minutes</p>
+          <p><i class="fas fa-users"></i> Groups of 10+ require advance booking</p>
+          <p><i class="fas fa-phone"></i> Call us: <a href="tel:9819827217" style="color:var(--crimson)">981-9827217</a></p>
+        </div>
+      </div>
+
+      <!-- TAKEAWAY ORDER -->
+      <div class="book-card sr sr2">
+        <h2><i class="fas fa-shopping-bag"></i> Takeaway Order</h2>
+        <div class="fg">
+          <label>Your Full Name *</label>
+          <input type="text" id="d-name" placeholder="e.g. Priya Sharma">
+        </div>
+        <div class="fg">
+          <label>Phone Number *</label>
+          <input type="tel" id="d-phone" placeholder="+977-XXXXXXXXXX">
+        </div>
+        <div class="fg">
+          <label>Your Order *</label>
+          <textarea id="d-order" placeholder="e.g. 1x Peri-Peri Chicken, 2x Paneer Chilly, 2x Noodles..."></textarea>
+        </div>
+        <div class="fg">
+          <label>Pickup Time</label>
+          <select id="d-time">
+            <option value="">ASAP (within 30 mins)</option>
+            <option>Within 1 hour</option><option>Within 2 hours</option>
+            <option>Schedule for later today</option>
+          </select>
+        </div>
+        <div class="fg">
+          <label>Special Instructions</label>
+          <input type="text" id="d-note" placeholder="e.g. Extra spicy, no onion...">
+        </div>
+        <div class="sub-btns">
+          <button class="sbtn sbtn-wa" onclick="deliveryWhatsApp()"><i class="fab fa-whatsapp"></i> Order via WhatsApp</button>
+          <button class="sbtn sbtn-em" onclick="deliveryEmail()"><i class="fas fa-envelope"></i> Send Order via Email</button>
+        </div>
+        <div class="book-info">
+          <h4><i class="fas fa-shopping-bag" style="color:var(--gold)"></i> Takeaway Info</h4>
+          <p><i class="fas fa-map"></i> Pickup at Bajrang Chowk, Hotel 7 Star</p>
+          <p><i class="fas fa-clock"></i> Ready in approximately 20-30 minutes</p>
+          <p><i class="fas fa-phone"></i> Call: <a href="tel:9819827217" style="color:var(--crimson)">981-9827217</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec sec-cr">
+    <div class="sh sr">
+      <span class="orn">✦ ✦ ✦</span>
+      <h2>Quick Contact for Orders</h2>
+      <p>Prefer a direct call or message? We're always ready!</p>
+      <div class="gd"><div class="dm"></div></div>
+    </div>
+    <div style="display:flex;gap:22px;justify-content:center;flex-wrap:wrap">
+      <a href="tel:9819827217" class="btn-royal"><span><i class="fas fa-phone"></i> Call: 981-9827217</span></a>
+      <a href="https://wa.me/9779819827217" target="_blank" class="btn-whatsapp-g"><i class="fab fa-whatsapp"></i> WhatsApp Order</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-grid">
+      <div class="foot-brand">
+        <div class="fname">De Lounge Cafe</div>
+        <p>Book your table or order takeaway — we're ready to serve you!</p>
+        <div class="foot-soc">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="https://wa.me/9779819827217" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+      <div class="foot-sec">
+        <h4>Quick Links</h4>
+        <ul class="foot-links">
+          <li><a onclick="showPage('home')">Home</a></li>
+          <li><a onclick="showPage('menu')">Our Menu</a></li>
+          <li><a onclick="showPage('contact')">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="foot-sec">
+        <h4>Order Now</h4>
+        <ul class="foot-contacts">
+          <li><i class="fab fa-whatsapp"></i><a href="https://wa.me/9779819827217" target="_blank">+977-9819827217</a></li>
+          <li><i class="fas fa-phone"></i><a href="tel:9819827217">981-9827217</a></li>
+        </ul>
+      </div>
+      <div class="foot-sec">
+        <h4>Find Us</h4>
+        <ul class="foot-contacts">
+          <li><i class="fas fa-map-marker-alt"></i><span>Bajrang Chowk, Hotel 7 Star, Janakpur 45600</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="mstrip" style="margin:0 -5% 25px;"></div>
+    <div class="foot-bottom"><p>© 2024 De Lounge Cafe <span class="heart">❤</span></p></div>
+  </footer>
+</div>
+<!-- END BOOKING PAGE -->
+
+<!-- ==================== REVIEWS PAGE ==================== -->
+<div id="page-reviews" class="page">
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <div class="hero-badge">✦ Guest Voices ✦</div>
+      <h1>What Our <span style="color:var(--gold)">Guests</span> Say</h1>
+      <p class="sub">Real experiences from our valued guests</p>
+    </div>
+  </div>
+  <div class="mstrip"></div>
+
+  <section class="sec sec-lt">
+    <div class="rat-summary sr">
+      <div class="rat-big">
+        <div class="rnum">3.5</div>
+        <div class="rstars">★★★★☆</div>
+        <div class="rtot">Based on 15 Google Reviews</div>
+      </div>
+      <div class="rat-bars">
+        <div class="rbar-row"><span>5 ★</span><div class="rbar-bg"><div class="rbar-fill" style="width:40%"></div></div></div>
+        <div class="rbar-row"><span>4 ★</span><div class="rbar-bg"><div class="rbar-fill" style="width:20%"></div></div></div>
+        <div class="rbar-row"><span>3 ★</span><div class="rbar-bg"><div class="rbar-fill" style="width:15%"></div></div></div>
+        <div class="rbar-row"><span>2 ★</span><div class="rbar-bg"><div class="rbar-fill" style="width:10%"></div></div></div>
+        <div class="rbar-row"><span>1 ★</span><div class="rbar-bg"><div class="rbar-fill" style="width:15%"></div></div></div>
+      </div>
+      <div style="text-align:center">
+        <div style="font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--crimson);margin-bottom:8px">Leave Your Review</div>
+        <a href="https://maps.google.com" target="_blank" class="btn-royal" style="display:inline-flex"><span><i class="fab fa-google"></i> Review on Google</span></a>
+      </div>
+    </div>
+
+    <div class="rev-grid" id="reviews-grid"></div>
+  </section>
+
+  <footer>
+    <div class="footer-grid">
+      <div class="foot-brand">
+        <div class="fname">De Lounge Cafe</div>
+        <p>Your feedback helps us improve. Thank you for every visit and kind word!</p>
+        <div class="foot-soc">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="https://wa.me/9779819827217" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+      <div class="foot-sec">
+        <h4>Quick Links</h4>
+        <ul class="foot-links">
+          <li><a onclick="showPage('home')">Home</a></li>
+          <li><a onclick="showPage('menu')">Our Menu</a></li>
+          <li><a onclick="showPage('booking')">Book a Table</a></li>
+          <li><a onclick="showPage('contact')">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="foot-sec"><h4>Contact</h4>
+        <ul class="foot-contacts">
+          <li><i class="fas fa-phone"></i><a href="tel:9819827217">981-9827217</a></li>
+          <li><i class="fab fa-whatsapp"></i><a href="https://wa.me/9779819827217" target="_blank">+977-9819827217</a></li>
+        </ul>
+      </div>
+      <div class="foot-sec"><h4>Find Us</h4>
+        <ul class="foot-contacts">
+          <li><i class="fas fa-map-marker-alt"></i><span>Bajrang Chowk, Hotel 7 Star, Janakpur 45600</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="mstrip" style="margin:0 -5% 25px;"></div>
+    <div class="foot-bottom"><p>© 2024 De Lounge Cafe <span class="heart">❤</span></p></div>
+  </footer>
+</div>
+<!-- END REVIEWS PAGE -->
+
+<!-- ==================== CONTACT PAGE ==================== -->
+<div id="page-contact" class="page">
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <div class="hero-badge">✦ Get In Touch ✦</div>
+      <h1>Contact <span style="color:var(--gold)">Us</span></h1>
+      <p class="sub">We're always here to serve you — reach out anytime!</p>
+    </div>
+  </div>
+  <div class="mstrip"></div>
+
+  <section class="sec sec-lt">
+    <div class="contact-grid">
+      <div>
+        <div class="cinfo-box sr">
+          <h2>Find Us</h2>
+          <div class="citem">
+            <div class="cicon"><i class="fas fa-map-marker-alt"></i></div>
+            <div class="ctext">
+              <h4>Address</h4>
+              <p>PWM9+J3X, Bajrang Chowk, Janakpur 45600</p>
+              <p>Ground Floor, Hotel 7 Star</p>
+            </div>
+          </div>
+          <div class="citem">
+            <div class="cicon"><i class="fas fa-phone"></i></div>
+            <div class="ctext">
+              <h4>Phone</h4>
+              <a href="tel:9819827217">981-9827217</a>
+            </div>
+          </div>
+          <div class="citem">
+            <div class="cicon"><i class="fab fa-whatsapp"></i></div>
+            <div class="ctext">
+              <h4>WhatsApp</h4>
+              <a href="https://wa.me/9779819827217" target="_blank">+977-9819827217</a>
+            </div>
+          </div>
+          <div class="citem">
+            <div class="cicon"><i class="fab fa-facebook-f"></i></div>
+            <div class="ctext">
+              <h4>Facebook</h4>
+              <a href="#" target="_blank">De Lounge Cafe</a>
+            </div>
+          </div>
+          <div class="citem">
+            <div class="cicon"><i class="fab fa-instagram"></i></div>
+            <div class="ctext">
+              <h4>Instagram</h4>
+              <a href="#" target="_blank">@deloungejanakpur</a>
+            </div>
+          </div>
+          <div>
+            <h4 style="font-size:.78rem;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:12px">Follow Us</h4>
+            <div class="social-row">
+              <a href="#" class="soc-link" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" class="soc-link" title="Instagram"><i class="fab fa-instagram"></i></a>
+              <a href="https://wa.me/9779819827217" class="soc-link" title="WhatsApp" target="_blank"><i class="fab fa-whatsapp"></i></a>
+              <a href="https://maps.google.com" class="soc-link" title="Google Maps" target="_blank"><i class="fab fa-google"></i></a>
+            </div>
+          </div>
+          <div class="map-box" style="margin-top:22px">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3567.6!2d85.9235!3d26.7282!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjbCsDQzJzQxLjUiTiA4NcKwNTUnMjQuNiJF!5e0!3m2!1sen!2snp!4v1234567890" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+          <div style="margin-top:15px">
+            <a href="https://maps.google.com" target="_blank" class="btn-royal" style="display:inline-flex;width:100%;justify-content:center"><span><i class="fas fa-directions"></i> Get Directions</span></a>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="cform-box sr sr2">
+          <h2>Send Us a Message</h2>
+          <div class="fg">
+            <label>Your Name *</label>
+            <input type="text" id="c-name" placeholder="Your full name">
+          </div>
+          <div class="fg">
+            <label>Phone / WhatsApp</label>
+            <input type="tel" id="c-phone" placeholder="+977-XXXXXXXXXX">
+          </div>
+          <div class="fg">
+            <label>Email Address</label>
+            <input type="email" id="c-email" placeholder="your@email.com">
+          </div>
+          <div class="fg">
+            <label>Subject</label>
+            <select id="c-subject">
+              <option>General Inquiry</option>
+              <option>Table Reservation</option>
+              <option>Takeaway Order</option>
+              <option>Event / Party Booking</option>
+              <option>Feedback & Suggestions</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="fg">
+            <label>Your Message *</label>
+            <textarea id="c-msg" placeholder="Write your message here..."></textarea>
+          </div>
+          <div class="msg-btns">
+            <button class="mbtn mbtn-wa" onclick="contactWhatsApp()"><i class="fab fa-whatsapp"></i> Send via WhatsApp</button>
+            <button class="mbtn mbtn-em" onclick="contactEmail()"><i class="fas fa-envelope"></i> Send via Email</button>
+          </div>
+        </div>
+
+        <div style="margin-top:22px;background:var(--dark);padding:30px;border:1px solid rgba(212,175,55,.2)" class="sr sr3">
+          <h3 style="font-family:'Playfair Display',serif;color:var(--gold);margin-bottom:18px;font-size:1.1rem"><i class="fas fa-clock"></i> Opening Hours</h3>
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <div style="display:flex;justify-content:space-between;color:rgba(255,255,255,.7);font-size:.85rem;border-bottom:1px solid rgba(212,175,55,.1);padding-bottom:8px"><span>Monday – Friday</span><span style="color:var(--gold)">11:00 AM – 10:00 PM</span></div>
+            <div style="display:flex;justify-content:space-between;color:rgba(255,255,255,.7);font-size:.85rem;border-bottom:1px solid rgba(212,175,55,.1);padding-bottom:8px"><span>Saturday</span><span style="color:var(--gold)">11:00 AM – 11:00 PM</span></div>
+            <div style="display:flex;justify-content:space-between;color:rgba(255,255,255,.7);font-size:.85rem"><span>Sunday</span><span style="color:var(--gold)">11:00 AM – 10:00 PM</span></div>
+          </div>
+          <div style="margin-top:20px;padding-top:18px;border-top:1px solid rgba(212,175,55,.15)">
+            <p style="color:rgba(255,255,255,.5);font-size:.78rem"><i class="fas fa-info-circle" style="color:var(--gold);margin-right:7px"></i> Late night food & special events may extend hours. Call to confirm.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-grid">
+      <div class="foot-brand">
+        <div class="fname">De Lounge Cafe</div>
+        <p>We're always delighted to hear from you. Reach us by phone or WhatsApp, or visit us at Bajrang Chowk, Janakpur Dham!</p>
+        <div class="foot-soc">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="https://wa.me/9779819827217" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+      <div class="foot-sec">
+        <h4>Quick Links</h4>
+        <ul class="foot-links">
+          <li><a onclick="showPage('home')">Home</a></li>
+          <li><a onclick="showPage('menu')">Our Menu</a></li>
+          <li><a onclick="showPage('booking')">Book a Table</a></li>
+          <li><a onclick="showPage('reviews')">Reviews</a></li>
+        </ul>
+      </div>
+      <div class="foot-sec"><h4>Contact</h4>
+        <ul class="foot-contacts">
+          <li><i class="fas fa-phone"></i><a href="tel:9819827217">981-9827217</a></li>
+          <li><i class="fab fa-whatsapp"></i><a href="https://wa.me/9779819827217" target="_blank">+977-9819827217</a></li>
+        </ul>
+      </div>
+      <div class="foot-sec"><h4>Location</h4>
+        <ul class="foot-contacts">
+          <li><i class="fas fa-map-marker-alt"></i><span>PWM9+J3X, Bajrang Chowk, Janakpur 45600</span></li>
+          <li><i class="fas fa-store"></i><span>Ground Floor, Hotel 7 Star</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="mstrip" style="margin:0 -5% 25px;"></div>
+    <div class="foot-bottom"><p>© 2024 De Lounge Cafe <span class="heart">❤</span> Janakpur Dham, Nepal</p></div>
+  </footer>
+</div>
+<!-- END CONTACT PAGE -->
+
+<!-- BACK TO TOP -->
+<button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fas fa-chevron-up"></i></button>
+
+<script>
+// ==================== NAVIGATION ====================
+function showPage(name){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-'+name).classList.add('active');
+  document.querySelectorAll('.nav-links li a').forEach(a=>a.classList.remove('active'));
+  const navEl=document.getElementById('nav-'+name);
+  if(navEl)navEl.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+  if(name==='menu'){document.getElementById('cart-bar').classList.toggle('vis',Object.keys(cart).length>0);}
+  else{document.getElementById('cart-bar').classList.remove('vis');}
+  initScrollReveal();
+}
+
+function toggleMobileNav(){
+  const mn=document.getElementById('mobile-nav');
+  mn.classList.toggle('open');
+}
+
+window.addEventListener('scroll',()=>{
+  const nav=document.getElementById('nav');
+  if(window.scrollY>50)nav.classList.add('scrolled');
+  else nav.classList.remove('scrolled');
+  const btt=document.getElementById('btt');
+  if(window.scrollY>400)btt.classList.add('vis');
+  else btt.classList.remove('vis');
+  initScrollReveal();
+});
+
+function initScrollReveal(){
+  document.querySelectorAll('.sr:not(.rev)').forEach(el=>{
+    const rect=el.getBoundingClientRect();
+    if(rect.top<window.innerHeight-80){el.classList.add('rev');}
+  });
+}
+setTimeout(initScrollReveal,100);
+
+// ==================== MENU DATA ====================
+const menuData={
+  'veg-snacks':[
+    {name:'French Fries',price:180,emoji:'🍟',desc:'Golden crispy potato fries',veg:true},
+    {name:'Aalu Sandheko',price:210,emoji:'🥔',desc:'Spiced potato salad with herbs',veg:true},
+    {name:'Aalu Roasted',price:215,emoji:'🥔',desc:'Oven-roasted seasoned potatoes',veg:true},
+    {name:'Peanut Sandheko',price:195,emoji:'🥜',desc:'Spiced peanut salad with fresh herbs',veg:true},
+    {name:'Sweet Corn Fried',price:250,emoji:'🌽',desc:'Crispy fried sweet corn',veg:true},
+    {name:'Mustange Aalu',price:235,emoji:'🥔',desc:'Mustang-style spiced potatoes',veg:true},
+    {name:'Paneer Chilly',price:410,emoji:'🧀',desc:'Cottage cheese in hot chilly sauce',veg:true},
+    {name:'Crunchy Paneer',price:410,emoji:'🧀',desc:'Crispy battered paneer bites',veg:true},
+    {name:'Mushroom Duplicks',price:410,emoji:'🍄',desc:'Cafe-style special mushroom preparation',veg:true},
+    {name:'Paneer Pakoda',price:410,emoji:'🧀',desc:'Crispy battered paneer fritters',veg:true},
+    {name:'Punjabi Paneer Pakoda',price:420,emoji:'🧀',desc:'Punjabi-style paneer pakoda with robust spices',veg:true},
+    {name:'Veg Spring Roll',price:315,emoji:'🥢',desc:'Crispy rolls filled with seasoned vegetables',veg:true},
+    {name:'Mushroom Chilly',price:395,emoji:'🍄',desc:'Stir-fried mushrooms in spicy chilly sauce',veg:true},
+    {name:'Dragon Paneer',price:395,emoji:'🐉',desc:'Paneer in fiery dragon sauce',veg:true},
+    {name:'Tawa Buja',price:145,emoji:'🌾',desc:'Traditional tawa-roasted snack mix',veg:true},
+    {name:'Veg Pakoda',price:210,emoji:'🥦',desc:'Mixed vegetable fritters',veg:true},
+    {name:'Dragon Spring Roll',price:395,emoji:'🐉',desc:'Crispy spring rolls in dragon sauce',veg:true},
+    {name:'Paneer Meet Ball',price:375,emoji:'🧀',desc:'Soft paneer balls in rich sauce',veg:true},
+  ],
+  'nonveg-snacks':[
+    {name:'Chicken Sausage Fry (per pcs)',price:90,emoji:'🌭',desc:'Individual fried chicken sausage',veg:false},
+    {name:'Chicken Garlic Sausage',price:345,emoji:'🌭',desc:'Garlicky chicken sausage, pan-fried',veg:false},
+    {name:'Chicken Sandheko',price:365,emoji:'🍗',desc:'Spiced chicken salad with herbs',veg:false},
+    {name:'Chicken Chilly',price:395,emoji:'🍗',desc:'Chicken in spicy chilly sauce',veg:false},
+    {name:'Chicken 65',price:395,emoji:'🍗',desc:'South Indian style crispy fried chicken',veg:false},
+    {name:'Chicken Fingers',price:395,emoji:'🍗',desc:'Golden crispy chicken fingers',veg:false},
+    {name:'Chicken Lollipop',price:395,emoji:'🍗',desc:'Crispy chicken lollipops',veg:false},
+    {name:'Cafe Special (BBQ Sausage)',price:445,emoji:'🌭',desc:'Signature BBQ sausage — a De Lounge favourite',veg:false,special:true},
+    {name:'Peri-Peri Chicken',price:450,emoji:'🍗',desc:'Cafe special — spicy peri-peri chicken',veg:false,special:true},
+    {name:'Achari Chicken',price:410,emoji:'🍗',desc:'Cafe special — cooked with flavorful, spicy & tangy achari masala',veg:false,special:true},
+    {name:'Chicken Pan Fries',price:395,emoji:'🍗',desc:'Crispy pan-fried chicken pieces',veg:false},
+    {name:'Mutton Chilly',price:645,emoji:'🍖',desc:'Tender mutton in fiery chilly sauce',veg:false},
+    {name:'Sichuan Fried Chicken Wing',price:450,emoji:'🍗',desc:'Sichuan-style crispy fried chicken wings',veg:false},
+    {name:'Chatkhara Mutton Boil Fries',price:565,emoji:'🍖',desc:'Cafe special — crispy & soft boil-fried mutton',veg:false,special:true},
+  ],
+  'soup':[
+    {name:'Mushroom Soup',price:285,emoji:'🍄',desc:'Creamy mushroom broth with herbs',veg:true},
+    {name:'Chicken Soup',price:265,emoji:'🍗',desc:'Light and comforting chicken broth',veg:false},
+    {name:'Hot & Sour Chicken',price:295,emoji:'🍗',desc:'Classic hot & sour chicken soup',veg:false},
+    {name:'Hot & Sour Veg',price:245,emoji:'🥦',desc:'Tangy hot & sour vegetable soup',veg:true},
+    {name:'Chicken Manchaw Soup',price:295,emoji:'🍗',desc:'Crispy noodle chicken manchow soup',veg:false},
+    {name:'Veg Manchaw Soup',price:265,emoji:'🥦',desc:'Crispy noodle vegetable manchow soup',veg:true},
+    {name:'Cream of Mushroom Soup',price:265,emoji:'🍄',desc:'Rich and velvety cream of mushroom',veg:true},
+    {name:'Cream of Chicken Soup',price:310,emoji:'🍗',desc:'Smooth and creamy chicken soup',veg:false},
+  ],
+  'rice-curry':[
+    {name:'Plain Rice',price:180,emoji:'🍚',desc:'Steamed basmati rice',veg:true},
+    {name:'Jeera Rice',price:200,emoji:'🍚',desc:'Cumin-flavored fragrant rice',veg:true},
+    {name:'Daal Fry',price:250,emoji:'🫕',desc:'Tempered lentils with aromatic spices',veg:true},
+    {name:'Mix Veg Curry',price:265,emoji:'🥗',desc:'Seasonal vegetables in aromatic curry sauce',veg:true},
+    {name:'Palak Butter Masala',price:410,emoji:'🥬',desc:'Creamy spinach in rich butter masala',veg:true},
+    {name:'Chicken Curry',price:400,emoji:'🍗',desc:'Classic chicken in spiced curry',veg:false},
+    {name:'Butter Chicken (Half)',price:300,emoji:'🍗',desc:'Half portion creamy butter chicken',veg:false},
+    {name:'Butter Chicken (Full)',price:600,emoji:'🍗',desc:'Full portion creamy butter chicken',veg:false},
+    {name:'Chicken Kadai',price:450,emoji:'🍗',desc:'Chicken cooked in kadai with peppers',veg:false},
+    {name:'Mutton Curry',price:510,emoji:'🍖',desc:'Slow-cooked mutton in rich curry',veg:false},
+    {name:'Mutton Rogan Josh',price:525,emoji:'🍖',desc:'Kashmiri-style mutton in aromatic gravy',veg:false},
+    {name:'Fish Curry',price:425,emoji:'🐟',desc:'Fresh fish in tangy curry sauce',veg:false},
+  ],
+  'noodles':[
+    {name:'Veg Noodles',price:165,emoji:'🍜',desc:'Stir-fried vegetable noodles',veg:true},
+    {name:'Egg Chowmein',price:175,emoji:'🍜',desc:'Egg noodles stir-fried with vegetables',veg:false},
+    {name:'Chicken Noodles',price:195,emoji:'🍜',desc:'Stir-fried chicken noodles',veg:false},
+    {name:'Paneer Chowmein',price:210,emoji:'🍜',desc:'Paneer-tossed chowmein noodles',veg:true},
+    {name:'Mixed Noodles',price:235,emoji:'🍜',desc:'Noodles with mixed toppings',veg:false},
+    {name:'Mutton Chowmein',price:275,emoji:'🍜',desc:'Classic mutton chowmein',veg:false},
+    {name:'De Lounge Special Chowmein',price:325,emoji:'🍜',desc:'Signature chowmein with chicken, sausage, egg & mutton',veg:false,special:true},
+  ],
+};
+
+// Cart
+let cart={};
+
+function renderMenu(){
+  Object.keys(menuData).forEach(cat=>{
+    const grid=document.getElementById(cat+'-grid');
+    if(!grid)return;
+    grid.innerHTML='';
+    menuData[cat].forEach((item,idx)=>{
+      const isSpecial=item.special||false;
+      const div=document.createElement('div');
+      div.className='mitem'+(isSpecial?' mitem-special':'');
+      div.innerHTML=`
+        <div class="mitem-img">
+          <span>${item.emoji}</span>
+          <span class="mitem-badge ${item.veg?'bveg':'bnonveg'}">${item.veg?'VEG':'NON-VEG'}</span>
+        </div>
+        <div class="mitem-body">
+          <h4>${item.name}</h4>
+          <small>${item.desc}</small>
+          <div class="mitem-footer">
+            <span class="mprice">Rs. ${item.price}</span>
+            <div class="qty-ctrl">
+              <button class="qbtn" onclick="changeQty('${cat}_${idx}',-1)">−</button>
+              <span class="qnum" id="qty-${cat}_${idx}">0</span>
+              <button class="qbtn" onclick="changeQty('${cat}_${idx}',1,'${item.name}',${item.price})">+</button>
+            </div>
+          </div>
+        </div>`;
+      grid.appendChild(div);
+    });
+  });
+}
+
+function changeQty(key,delta,name,price){
+  if(!cart[key])cart[key]={qty:0,name:name||key,price:price||0};
+  cart[key].qty=Math.max(0,cart[key].qty+delta);
+  if(cart[key].qty===0)delete cart[key];
+  const el=document.getElementById('qty-'+key);
+  if(el)el.textContent=cart[key]?cart[key].qty:0;
+  updateCartBar();
+}
+
+function updateCartBar(){
+  const bar=document.getElementById('cart-bar');
+  const keys=Object.keys(cart).filter(k=>cart[k].qty>0);
+  const total=keys.reduce((s,k)=>s+cart[k].qty*cart[k].price,0);
+  const count=keys.reduce((s,k)=>s+cart[k].qty,0);
+  document.getElementById('cart-count-el').textContent=count+' item'+(count!==1?'s':'');
+  document.getElementById('cart-total-el').textContent='Rs. '+total;
+  const onMenu=document.getElementById('page-menu').classList.contains('active');
+  if(onMenu&&count>0)bar.classList.add('vis');
+  else bar.classList.remove('vis');
+}
+
+function getOrderSummary(){
+  const lines=Object.keys(cart).filter(k=>cart[k].qty>0).map(k=>`• ${cart[k].name} x${cart[k].qty} = Rs. ${cart[k].qty*cart[k].price}`);
+  const total=Object.keys(cart).filter(k=>cart[k].qty>0).reduce((s,k)=>s+cart[k].qty*cart[k].price,0);
+  return lines.join('\n')+'\n\nTotal: Rs. '+total;
+}
+
+function orderViaWhatsApp(){
+  if(!Object.keys(cart).length){alert('Please add items to your cart first!');return;}
+  const msg=encodeURIComponent('🍽 *Order from De Lounge Cafe*\n\n'+getOrderSummary()+'\n\nPlease confirm my order. Thank you! 🙏');
+  window.open('https://wa.me/9779819827217?text='+msg,'_blank');
+}
+
+function orderViaEmail(){
+  if(!Object.keys(cart).length){alert('Please add items to your cart first!');return;}
+  const body=encodeURIComponent('Order from De Lounge Cafe:\n\n'+getOrderSummary()+'\n\nPlease confirm my order. Thank you!');
+  window.open('mailto:?subject=Food Order - De Lounge Cafe&body='+body);
+}
+
+function clearCart(){
+  cart={};
+  document.querySelectorAll('.qnum').forEach(el=>el.textContent='0');
+  document.getElementById('cart-bar').classList.remove('vis');
+}
+
+function switchMenuTab(id,el){
+  document.querySelectorAll('.mtab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.menu-sec').forEach(s=>s.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('msec-'+id).classList.add('active');
+}
+
+// ==================== BOOKING ====================
+function bookTableWhatsApp(){
+  const n=document.getElementById('b-name').value;
+  const p=document.getElementById('b-phone').value;
+  const d=document.getElementById('b-date').value;
+  const t=document.getElementById('b-time').value;
+  const g=document.getElementById('b-guests').value;
+  const note=document.getElementById('b-note').value;
+  if(!n||!p||!d||!t||!g){alert('Please fill all required fields!');return;}
+  const msg=encodeURIComponent(`📅 *Table Reservation Request*\n🏛 De Lounge Cafe, Janakpur\n\n👤 Name: ${n}\n📞 Phone: ${p}\n📅 Date: ${d}\n🕐 Time: ${t}\n👥 Guests: ${g}${note?'\n📝 Notes: '+note:''}\n\nPlease confirm my reservation. Thank you! 🙏`);
+  window.open('https://wa.me/9779819827217?text='+msg,'_blank');
+}
+
+function bookTableEmail(){
+  const n=document.getElementById('b-name').value;
+  const p=document.getElementById('b-phone').value;
+  const d=document.getElementById('b-date').value;
+  const t=document.getElementById('b-time').value;
+  const g=document.getElementById('b-guests').value;
+  const note=document.getElementById('b-note').value;
+  if(!n||!p){alert('Please fill required fields!');return;}
+  const body=encodeURIComponent(`Table Reservation Request\n\nName: ${n}\nPhone: ${p}\nDate: ${d}\nTime: ${t}\nGuests: ${g}\nNotes: ${note}\n\nPlease confirm my reservation. Thank you!`);
+  window.open('mailto:?subject=Table Reservation - De Lounge Cafe&body='+body);
+}
+
+function deliveryWhatsApp(){
+  const n=document.getElementById('d-name').value;
+  const p=document.getElementById('d-phone').value;
+  const o=document.getElementById('d-order').value;
+  const tm=document.getElementById('d-time').value;
+  const note=document.getElementById('d-note').value;
+  if(!n||!p||!o){alert('Please fill all required fields!');return;}
+  const msg=encodeURIComponent(`📦 *Takeaway Order*\n🏛 De Lounge Cafe, Janakpur\n\n👤 Name: ${n}\n📞 Phone: ${p}\n\n🍽 Order:\n${o}\n\n⏰ Pickup Time: ${tm||'ASAP'}${note?'\n📝 Notes: '+note:''}\n\nPlease confirm! 🙏`);
+  window.open('https://wa.me/9779819827217?text='+msg,'_blank');
+}
+
+function deliveryEmail(){
+  const n=document.getElementById('d-name').value;
+  const p=document.getElementById('d-phone').value;
+  const o=document.getElementById('d-order').value;
+  const note=document.getElementById('d-note').value;
+  if(!n||!p){alert('Please fill required fields!');return;}
+  const body=encodeURIComponent(`Takeaway Order\n\nName: ${n}\nPhone: ${p}\n\nOrder:\n${o}\n\nNotes: ${note}\n\nPlease confirm. Thank you!`);
+  window.open('mailto:?subject=Takeaway Order - De Lounge Cafe&body='+body);
+}
+
+// ==================== CONTACT ====================
+function contactWhatsApp(){
+  const n=document.getElementById('c-name').value;
+  const p=document.getElementById('c-phone').value;
+  const sub=document.getElementById('c-subject').value;
+  const msg=document.getElementById('c-msg').value;
+  if(!n||!msg){alert('Please enter your name and message!');return;}
+  const wa=encodeURIComponent(`📬 *Message for De Lounge Cafe*\n\n👤 Name: ${n}\n📞 Phone: ${p||'N/A'}\n📋 Subject: ${sub}\n\n💬 Message:\n${msg}\n\nThank you! 🙏`);
+  window.open('https://wa.me/9779819827217?text='+wa,'_blank');
+}
+
+function contactEmail(){
+  const n=document.getElementById('c-name').value;
+  const p=document.getElementById('c-phone').value;
+  const sub=document.getElementById('c-subject').value;
+  const msg=document.getElementById('c-msg').value;
+  if(!n||!msg){alert('Please enter your name and message!');return;}
+  const body=encodeURIComponent(`Name: ${n}\nPhone: ${p||'N/A'}\n\nMessage:\n${msg}\n\nSent from De Lounge Cafe website.`);
+  window.open('mailto:?subject='+encodeURIComponent(sub+' - De Lounge Cafe')+'&body='+body);
+}
+
+// ==================== REVIEWS DATA ====================
+const reviewsData=[
+  {name:'Aman Sah',initials:'AS',meta:'10 months ago',stars:5,tags:['Dine in','Outdoor Seating'],text:'De Lounge offers outdoor seating which I like most along with that the ambience of Cafe is also charming with perfect lighting. I had veg momo which was very tasty along with that they also serve various items at an affordable rate.'},
+  {name:'Shivajee Raut',initials:'SR',meta:'4 months ago (Edited)',stars:5,tags:['Dine in'],text:'Lovely atmosphere, tasty foods, comfortable lounge, soothing music. Just wow! A perfect destination to hangout with family and friends. Recommended! 👍👍'},
+  {name:'Jimmy HE',initials:'JH',meta:'a year ago',stars:5,tags:['Dine in','Tourists'],text:'The best cafe you can find in this town. As a foreigner, I think they provide the most clean dining place and most chill vibe. Also, they have an English version menu, which is rare in this town. Strongly recommend to every foreigner, if you want to find a more relaxing place in this town.'},
+  {name:'Rashmi Chaudhary',initials:'RC',meta:'a year ago',stars:5,tags:[],text:'Food quality A+. 😊'},
+  {name:'Subhash Chandra Sah',initials:'SC',meta:'4 months ago',stars:5,tags:[],text:'Loved new taste.'},
+  {name:'Abhiuday Gupta',initials:'AG',meta:'a year ago',stars:3,tags:['Dine in'],text:'The menu needs some rework. A lot of spelling mistakes and the menu doesn\'t match the awesome interior of the restaurant. The service was ok but slow. However the biryani was tasty and the quantity was very good. Chilli momos were below average and the burger was good. I am very happy that a good looking restro has opened in Janakpur. I hope that I will be able to change my review the next time I visit.'},
+  {name:'Nikesh Kathayat',initials:'NK',meta:'a year ago',stars:2,tags:['Dine in'],text:'De Lounge Cafe may catch your eye with its stylish interior, but the food quality leaves much to be desired. The rice, in particular, is disappointing, and the overall taste of the dishes does not meet expectations. Service is another major drawback — the staff appears unfriendly, and service is slow. The decor and setting create a pleasant environment, but the experience beyond the looks is underwhelming.'},
+  {name:'Anjali Shah',initials:'AS',meta:'a month ago',stars:1,tags:[],text:'Worst cafe in janakpur. The mutton which my sister ordered — after eating it she got severe diarrhoea. How can they sell expired mutton. Shame on this restaurant. Don\'t visit this cafe if you don\'t want to have food poisoning.'},
+  {name:'Ambrish Tiwari',initials:'AT',meta:'4 months ago',stars:2,tags:[],text:'Overpriced and poor service.'},
+  {name:'Shibu Yadav',initials:'SY',meta:'a year ago',stars:2,tags:[],text:'Not much good.'},
+];
+
+function renderReviews(){
+  const grid=document.getElementById('reviews-grid');
+  if(!grid)return;
+  grid.innerHTML='';
+  reviewsData.forEach(r=>{
+    const filled=Math.round(r.stars);
+    const stars='★'.repeat(filled)+'☆'.repeat(5-filled);
+    const tags=r.tags.map(t=>`<span class="rev-tag">${t}</span>`).join('');
+    const card=document.createElement('div');
+    card.className='rev-card sr';
+    card.innerHTML=`
+      <div class="rev-head">
+        <div class="rev-av">${r.initials}</div>
+        <div class="rev-info">
+          <h4>${r.name}</h4>
+          <div class="rmeta">${r.meta}</div>
+        </div>
+      </div>
+      <div class="rev-stars">${stars}</div>
+      ${tags?`<div class="rev-tags">${tags}</div>`:''}
+      <p class="rev-txt">${r.text}</p>`;
+    grid.appendChild(card);
+  });
+  initScrollReveal();
+}
+
+// Init
+renderMenu();
+renderReviews();
+</script>
+</body>
+  </html>
